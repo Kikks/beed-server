@@ -15,6 +15,8 @@ const {
 const PORT = process.env.PORT || 5000
 
 //Middleware
+
+app.use(cors())
 app.use(
 	fileUpload({
 		useTempFiles: true,
@@ -29,7 +31,6 @@ app.post("/upload-image", uploadImage)
 app.post("/create-auction", createAuction)
 
 
-app.use(cors())
 
 mongoose
 	.connect(process.env.MONGO, {
