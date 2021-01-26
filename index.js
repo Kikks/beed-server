@@ -5,6 +5,7 @@ const bodyParser = require("body-parser")
 const jsonParser = bodyParser.json()
 const fileUpload = require("express-fileupload")
 const path = require("path")
+const cors = require("cors")
 const {
 	fetchAuctions,
 	uploadImage,
@@ -21,18 +22,12 @@ app.use(
 	})
 )
 app.use(jsonParser)
-app.all('/', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
- });
-  
+app.use(cors())
+
 //Routes
 app.get("/fetch-auctions", fetchAuctions)
 app.post("/upload-image", uploadImage)
 app.post("/create-auction", createAuction)
-
-
 
 mongoose
 	.connect(process.env.MONGO, {
