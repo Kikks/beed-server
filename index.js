@@ -22,12 +22,14 @@ app.use(
 	})
 )
 app.use(jsonParser)
-app.use(cors())
 
 //Routes
 app.get("/fetch-auctions", fetchAuctions)
 app.post("/upload-image", uploadImage)
 app.post("/create-auction", createAuction)
+
+
+app.use(cors())
 
 mongoose
 	.connect(process.env.MONGO, {
