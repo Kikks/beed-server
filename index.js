@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 5000
 //Middleware
 
 app.use(cors({
+	credentials: true,
 	origin: 'https://beed-client.netlify.app'
 }))
 app.use(
