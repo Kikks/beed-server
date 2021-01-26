@@ -14,8 +14,6 @@ const {
 const PORT = process.env.PORT || 5000
 
 //Middleware
-const cors = require("cors")
-app.use(cors())
 app.use(
 	fileUpload({
 		useTempFiles: true,
@@ -23,11 +21,11 @@ app.use(
 	})
 )
 app.use(jsonParser)
-//app.all('/', function(req, res, next) {
-  //  res.header("Access-Control-Allow-Origin", "*");
-  //  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  //  next()
- // });
+app.all('/', function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+ });
   
 //Routes
 app.get("/fetch-auctions", fetchAuctions)
