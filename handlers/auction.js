@@ -27,14 +27,13 @@ exports.uploadImage = (req, res) => {
 	const errors = {}
 
 	const imgList = [".png", ".jpg", ".jpeg"]
-	// Checking the file type
 	if (!imgList.includes(extName)) {
 		fs.unlinkSync(targetFile.tempFilePath)
 		errors.image = "Invalid File format"
 		return res.status(422).json(errors)
 	}
 
-	if (targetFile.size > 10048576) {
+	if (targetFile.size > 2048576) {
 		fs.unlinkSync(targetFile.tempFilePath)
 		errors.image = "File is too large. Max size of upload should be 2mb"
 		return res.status(413).json(errors)
